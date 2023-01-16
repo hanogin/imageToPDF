@@ -1,0 +1,112 @@
+/* @font-face {
+    font-family: "bold";
+    src: url("font/FbHadasaNewBook-Bold.otf");
+    src: url("font/FbHadasaNewBook-Bold.otf") format("opentype"),
+} */
+
+
+@font-face {
+    font-family: "bold";
+    src: url("font/FbHadasaNewBook-Bold.otf");
+    /* src: url("font/FbHadasaNewBook-Bold.otf") format("otf"), */
+}
+
+@font-face {
+    font-family: "light";
+    src: url("font/FbHadasaNewBook-Light.otf");
+    /* src: url("font/FbHadasaNewBook-Light.otf") format("otf"), */
+}
+
+@font-face {
+    font-family: "regular";
+    src: url("font/FbHadasaNewBook-Regular.otf");
+    /* src: url("font/FbHadasaNewBook-Regular.otf") format("otf"), */
+}
+
+#invoiceId {
+    font-family: bold;
+    font-size: 24px;
+    position: absolute;
+    top: 348px;
+    left: 618px;
+}
+
+#date {
+    font-family: bold;
+    font-size: 24px;
+    position: absolute;
+    top: 445px;
+    left: 822px;
+}
+
+#fullName {
+    font-family: bold;
+    font-size: 24px;
+    position: absolute;
+    top: 615px;
+    left: 900px;
+}
+
+#tz {
+    font-family: bold;
+    font-size: 24px;
+    position: absolute;
+    top: 515px;
+    left: 762px;
+}
+
+#address {
+    font-family: bold;
+    font-size: 24px;
+    position: absolute;
+    top: 586px;
+    left: 1091px;
+}
+
+#apartment {
+    font-family: bold;
+    font-size: 24px;
+    position: absolute;
+    top: 586px;
+    left: 868px;
+}
+
+#city {
+    font-family: bold;
+    font-size: 24px;
+    position: absolute;
+    top: 586px;
+    left: 797px;
+}
+
+#phone {
+    font-family: bold;
+    font-size: 24px;
+    position: absolute;
+    top: 657px;
+    left: 1110px;
+}
+
+#mobile {
+    font-family: bold;
+    font-size: 24px;
+    position: absolute;
+    top: 657px;
+    left: 890px;
+}
+
+#sum {
+    font-family: bold;
+    font-size: 24px;
+    position: absolute;
+    top: 739px;
+    left: 880px;
+}
+
+#balance {
+    font-family: bold;
+    font-size: 24px;
+    position: absolute;
+    top: 806px;
+    left: 678px;
+}
