@@ -26,8 +26,9 @@ namespace API.Controllers
             Page page;
             string lang;
 
-            string basePath = @"D:\Programing\ImageToPDF\InvoicePic\\";
+            //string basePath = @"D:\Programing\ImageToPDF\InvoicePic\\";
             string binFolder = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "\\App_Data\\InvoicePic\\";
+            //string binFolder = @"C:\c_project\imageToPDF\InvoicePic\";
 
             var options = new LaunchOptions
             {
@@ -74,16 +75,16 @@ namespace API.Controllers
         {
             string result = template.Replace("#invoiceId#", "1001")
                 .Replace("#invoiceId#", "1001")
-                .Replace("#date#", "13/01/2023")
-                .Replace("#fullName#", "שלי גינזבורג")
-                .Replace("#tz#", "123456789")
-                .Replace("#address#", "שאגת אריה 17")
-                .Replace("#apartment#", "4")
-                .Replace("#city#", "מודיעין עילית")
-                .Replace("#phone#", "0527131591")
-                .Replace("#mobile#", "0522610415 ")
-                .Replace("#sum#", "100000")
-                .Replace("#balance#", "5000");
+                .Replace("#date#", "תאריך " + "13/01/2023")
+                .Replace("#fullName#", "הרינו לאשר כי "  + "שלי גינזבורג")
+                .Replace("#tz#", "ת.ז " + "123456789")
+                .Replace("#address#", "כתובת: " + "שאגת אריה 17")
+                .Replace("#apartment#", "דירה: " + "4")
+                .Replace("#city#", "עיר: " + "מודיעין עילית")
+                .Replace("#phone#", "טלפון: " + "0527131591")
+                .Replace("#mobile#", "נייד: " + "0522610415 ")
+                .Replace("#sum#", $"{100000:n0}")
+                .Replace("#balance#", $"{5000:n0}");
 
             return result;
         }
