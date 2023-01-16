@@ -3,6 +3,7 @@ using PuppeteerSharp.Media;
 using PuppeteerSharp;
 using System.IO;
 using System.Reflection;
+using System.Collections;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace API.Controllers
@@ -16,6 +17,13 @@ namespace API.Controllers
         public byte[] Get()
         {
             return ConvertToPDF();
+        }
+
+        [HttpGet("invoice_stream")]
+        public IActionResult GetStream()
+        {
+            var pdfFIle = ConvertToPDF();
+            return File(pdfFIle, "application/pdf", "testFile.pdf");
         }
 
 
@@ -61,6 +69,9 @@ namespace API.Controllers
             var pdfOptionsJson = getOptionsPDF();
 
             byte[] _Pdf = page.PdfDataAsync(pdfOptionsJson).Result;
+
+            Stream stream = new MemoryStream(_Pdf);
+
 
             System.IO.File.WriteAllBytes(binFolder + ticksPath + ".pdf", _Pdf);
 
