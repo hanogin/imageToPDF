@@ -69,8 +69,6 @@ namespace API.Controllers
 
             return _Pdf;
         }
-
-
         private string replaceParameters(string template)
         {
             string result = template.Replace("#invoiceId#", "1001")
@@ -88,7 +86,6 @@ namespace API.Controllers
 
             return result;
         }
-
         private PdfOptions getOptionsPDF()
         {
             var pdfOptionsJson = new PdfOptions();
