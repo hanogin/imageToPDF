@@ -2,6 +2,7 @@
 using PuppeteerSharp.Media;
 using PuppeteerSharp;
 using System.IO;
+using System.Reflection;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace API.Controllers
@@ -11,11 +12,10 @@ namespace API.Controllers
     public class ConvertController : ControllerBase
     {
         // GET: api/<ConvertController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        [HttpGet("invoice")]
+        public byte[] Get()
         {
-            ConvertToPDF();
-            return new string[] { "value1", "value2" };
+            return ConvertToPDF();
         }
 
 
@@ -27,6 +27,7 @@ namespace API.Controllers
             string lang;
 
             string basePath = @"D:\Programing\ImageToPDF\InvoicePic\\";
+            string binFolder = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "\\App_Data\\InvoicePic\\";
 
             var options = new LaunchOptions
             {
@@ -45,14 +46,14 @@ namespace API.Controllers
 
             string template;
 
-            template = System.IO.File.ReadAllText(basePath + "index.html");
+            template = System.IO.File.ReadAllText(binFolder + "index.html");
 
             template = replaceParameters(template);
             string ticksPath = (DateTime.Now.Ticks) + ".html";
 
-            System.IO.File.WriteAllText(basePath + ticksPath, template);
+            System.IO.File.WriteAllText(binFolder + ticksPath, template);
 
-            var res = page.GoToAsync(Path.Combine(basePath + ticksPath)).Result;
+            var res = page.GoToAsync(Path.Combine(binFolder + ticksPath)).Result;
 
             //await page.AddStyleTagAsync(@"D:\Programing\Moses\InvoicePic\style.css");
 
@@ -60,7 +61,7 @@ namespace API.Controllers
 
             byte[] _Pdf = page.PdfDataAsync(pdfOptionsJson).Result;
 
-            System.IO.File.WriteAllBytes(basePath + ticksPath + ".pdf", _Pdf);
+            System.IO.File.WriteAllBytes(binFolder + ticksPath + ".pdf", _Pdf);
 
             if (System.IO.File.Exists("./" + ticksPath)) { System.IO.File.Delete("./" + ticksPath); }
 
