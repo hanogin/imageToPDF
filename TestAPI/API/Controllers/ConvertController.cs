@@ -14,20 +14,20 @@ namespace API.Controllers
     {
         // GET: api/<ConvertController>
         [HttpGet("invoice")]
-        public byte[] Get()
+        public string Get()
         {
             return ConvertToPDF();
         }
 
-        [HttpGet("invoice_stream")]
-        public IActionResult GetStream()
-        {
-            var pdfFIle = ConvertToPDF();
-            return File(pdfFIle, "application/pdf", "testFile.pdf");
-        }
+        //[HttpGet("invoice_stream")]
+        //public IActionResult GetStream()
+        //{
+        //    var pdfFIle = ConvertToPDF();
+        //    return File(pdfFIle, "application/pdf", "testFile.pdf");
+        //}
 
 
-        private byte[] ConvertToPDF()
+        private  string ConvertToPDF()
         {
             BrowserFetcher browserFetcher;
             Browser browser;
@@ -58,11 +58,11 @@ namespace API.Controllers
             template = System.IO.File.ReadAllText(binFolder + "index.html");
 
             template = replaceParameters(template);
-            string ticksPath = (DateTime.Now.Ticks) + ".html";
+            string ticksPath = (DateTime.Now.Ticks).ToString() ;
 
-            System.IO.File.WriteAllText(binFolder + ticksPath, template);
+            System.IO.File.WriteAllText(binFolder + ticksPath + ".html", template);
 
-            var res = page.GoToAsync(Path.Combine(binFolder + ticksPath)).Result;
+            var res = page.GoToAsync(Path.Combine(binFolder + ticksPath + ".html")).Result;
 
             //await page.AddStyleTagAsync(@"D:\Programing\Moses\InvoicePic\style.css");
 
@@ -80,7 +80,7 @@ namespace API.Controllers
             browserFetcher.Dispose();
             browser.Process.Kill();
 
-            return _Pdf;
+            return binFolder + ticksPath + ".pdf";
         }
         private string replaceParameters(string template)
         {

@@ -19,7 +19,8 @@ namespace test_old
                 HttpResponseMessage response = client.GetAsync("http://192.168.60.1/htmlTpPDF/api/Convert/invoice").Result;
                 byte[] arr = response.Content.ReadAsByteArrayAsync().Result;
 
-                MemoryStream stream = new MemoryStream(arr);
+                File.WriteAllBytes("C:\\c_project\\test.pdf", arr);
+
             }
 
 

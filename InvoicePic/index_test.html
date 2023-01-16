@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <title>אוהבי חסד - קבלה</title>
     <!-- <link rel="stylesheet" href="./style.css"> -->
 
@@ -28,15 +28,27 @@
             font-family: regular;
             font-size: 24px;
         }
+
+        img {
+            -webkit-print-color-adjust: exact;
+        }
+
+        @media print {
+            img {
+                max-height: none !important;
+                height: 100% !important;
+            }
+        }
     </style>
 </head>
 
 <body style="text-align: center">
-    <img class="all" width="100%" height="100%" src="./images/all_01.jpg" alt="">
+    <!-- <img class="all" width="50%" height="100%" src="./images/all_01.jpg" alt=""> -->
+    <img class="all" width="50%" src="./images/all_01.jpg" alt="">
 
 
 
-    <p style="
+    <!-- <p style="
     position: absolute;
     top: 330px;
     left: 100px;" id="invoiceId">#invoiceId#</p>
@@ -108,15 +120,15 @@
     <p style="
 position: absolute;
 top: 785px;
-left: 190px;" id="balanceComment">לאחר הפקדה זו, יתרת הפקדתו בגמ"ח היא בסך </p>
+left: 190px;" id="balanceComment">לאחר הפקדה זו, יתרת הפקדתו בגמ"ח היא בסך </p> -->
 
-<!-- <img style="position: absolute;
+    <!-- <img style="position: absolute;
 top: 875px;
 left: 350px;"
  class="all" src="./images/gmach_footer.PNG" alt=""> -->
 
 
-
+    <!-- 
  <p style="
 position: absolute;
 font-family: bold;
@@ -136,7 +148,7 @@ font-family: regular;
 font-size: 20px;
 position: absolute;
 top: 952px;
-left: 368px;" id="balance">ע.ר 580753945</p> 
+left: 368px;" id="balance">ע.ר 580753945</p>  -->
 
 </body>
 
