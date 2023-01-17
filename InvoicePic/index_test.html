@@ -29,14 +29,25 @@
             font-size: 24px;
         }
 
-        img {
-            -webkit-print-color-adjust: exact;
-        }
 
         @media print {
-            img {
-                max-height: none !important;
-                height: 100% !important;
+            p {
+                position: absolute;
+                top: 374px;
+                left: 488px;
+            }
+
+            img{
+                width: 100%;
+                height: 100%;eu
+            }
+        }
+
+        @media all {
+            p {
+                position: absolute;
+                top: 374px;
+                left: 488px;
             }
         }
     </style>
@@ -46,7 +57,7 @@
     <!-- <img class="all" width="50%" height="100%" src="./images/all_01.jpg" alt=""> -->
     <img class="all" width="50%" src="./images/all_01.jpg" alt="">
 
-
+    <p id="invoiceId">#invoiceId#</p>
 
     <!-- <p style="
     position: absolute;
