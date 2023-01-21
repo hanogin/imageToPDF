@@ -4,6 +4,9 @@ using PuppeteerSharp;
 using System.IO;
 using System.Reflection;
 using System.Collections;
+using Balbarak.WeasyPrint;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace API.Controllers
@@ -19,6 +22,13 @@ namespace API.Controllers
             return ConvertToPDF();
         }
 
+
+        [HttpGet("weasyPrint")]
+        public void Get_WeasyPrint()
+        {
+            GetWeasyPrint();
+        }
+
         //[HttpGet("invoice_stream")]
         //public IActionResult GetStream()
         //{
@@ -26,6 +36,72 @@ namespace API.Controllers
         //    return File(pdfFIle, "application/pdf", "testFile.pdf");
         //}
 
+        //public static BaseFont GetFont()
+        //{
+        //   var path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "\\App_Data\\InvoicePic\\font\\FbHadasaNewBook-Light.otf";
+        //    return BaseFont.CreateFont(path, BaseFont., BaseFont.EMBEDDED);
+        //}
+
+        //public static BaseFont GetFont()
+        //{
+        //    string fontName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "FbHadasaNewBook-Light.otf");
+        //    return BaseFont.CreateFont(fontName, BaseFont.CP1252, BaseFont.EMBEDDED);
+        //}
+        public static BaseFont GetTahoma()
+        {
+            var fontName = "FbHadasaNewBook-Light";
+            if (!FontFactory.IsRegistered(fontName))
+            {
+                var fontPath = Environment.GetEnvironmentVariable("SystemRoot") + "\\fonts\\FbHadasaNewBook-Light.otf";
+                FontFactory.Register(fontPath, fontName);
+            }
+            return FontFactory.GetFont(fontName, BaseFont.IDENTITY_H, BaseFont.EMBEDDED).BaseFont;
+        }
+
+        private static BaseFont GetFont()
+        {
+            string fontName = "Fb HadasaNewBook Light";
+            string fileName = "FbHadasaNewBook-Light.otf";
+            if (!FontFactory.IsRegistered(fontName))
+            {
+                var fontPath = Environment.GetEnvironmentVariable("SystemRoot") + "\\fonts\\" + fileName;
+                FontFactory.Register(fontPath);
+            }
+            return FontFactory.GetFont(fontName, BaseFont.IDENTITY_H, BaseFont.EMBEDDED).BaseFont;
+        }
+
+        private void GetWeasyPrint()
+        {
+            string binFolder = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "\\App_Data\\InvoicePic\\";
+            using (FileStream outFile = new FileStream(@$"{binFolder}\result.pdf", FileMode.Create))
+            {
+                PdfReader pdfReader = new PdfReader(@$"{binFolder}\form.pdf");
+                PdfStamper pdfStamper = new PdfStamper(pdfReader, outFile);
+
+
+                AcroFields fields = pdfStamper.AcroFields;
+                //fields.AddSubstitutionFont(GetFont());
+                //rest of the code here
+                fields.SetField("date", "1/01/2023");
+                fields.SetField("t.z", "123456789");
+
+                //BaseFont bf = GetFont();
+
+                //fields.AddSubstitutionFont(bf);
+                    
+                    //...
+                pdfStamper.Close();
+                pdfReader.Close();
+            }
+
+            //using (WeasyPrintClient client = new WeasyPrintClient())
+            //{
+            //    var input = @$"{binFolder}\index01.html";
+            //    var output = @$"{binFolder}\test01.pdf";
+
+            //    client.GeneratePdf(input, output);
+            //}
+        }
 
         private  string ConvertToPDF()
         {
