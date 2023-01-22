@@ -26,6 +26,18 @@ namespace API.Controllers
             return ConvertToPDF(value);
         }
 
+        [HttpPost("downloadFile")]
+        public IActionResult DownloadFile(ReqDTO value)
+        {
+            //Response.Headers.Add("Content-Disposition", "inline; filename=test.pdf");
+            //return File(ConvertToPDF(value), "application/pdf");
+
+            //var stream = new FileStream(@"path\to\file", FileMode.Open);
+            //return File(stream, "application/pdf", "FileDownloadName.ext");
+
+            return File(ConvertToPDF(value), "application/octet-stream", "test.pdf");
+        }
+
 
 
         private byte[] ConvertToPDF(ReqDTO value)

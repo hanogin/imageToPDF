@@ -107,7 +107,7 @@ namespace InjectDataToWordFIle
 
                 //Create a base font object making sure to specify IDENTITY-H
                 BaseFont bf = BaseFont.CreateFont(ARIALUNI_TFF, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-                iTextSharp.text.Font f = new iTextSharp.text.Font(bf, 12);
+                iTextSharp.text.Font f = new iTextSharp.text.Font(bf, 20, 5);
                 
 
                 // Pdf with form
@@ -115,11 +115,12 @@ namespace InjectDataToWordFIle
                 PdfStamper pdfStamper = new PdfStamper(pdfReader, outFile);
 
                 AcroFields fields = pdfStamper.AcroFields;
+                //fields.AddSubstitutionFont(f.BaseFont);
+
 
                 fields.SetField("date", "TEST");
                 fields.SetField("t.z", "בדיקה");
 
-                fields.AddSubstitutionFont(f.BaseFont);
 
                 pdfStamper.Close();
                 pdfReader.Close();
@@ -131,6 +132,8 @@ namespace InjectDataToWordFIle
             string basePath = @"C:\c_project\pdfTest\";
             // Load PDF form contents
             FileStream fs = new FileStream(basePath + "result_bold.pdf", FileMode.Open, FileAccess.ReadWrite);
+
+
             // Instantiate Document instance with stream holding form file
             Aspose.Pdf.Document pdfDocument = new Aspose.Pdf.Document(fs);
             var f = pdfDocument.FontUtilities;
