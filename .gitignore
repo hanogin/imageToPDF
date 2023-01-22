@@ -1,2 +1,9 @@
-**/packages/*
-!**/packages/repositories.config
+.angular
+dist
+node_modules
+bin
+obj
+.vs
+.vs
+/.vs
+packages
