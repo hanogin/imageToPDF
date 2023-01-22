@@ -14,7 +14,7 @@ namespace InjectDataToWordFIle
         static async System.Threading.Tasks.Task Main(string[] args)
         {
             ConvertToPDF();
-            ConverrAspose();
+            //ConverrAspose();
             //BrowserFetcher browserFetcher;
             //Browser browser;
             //Page page;
@@ -100,26 +100,21 @@ namespace InjectDataToWordFIle
         private static void ConvertToPDF()
         {
             string basePath = @"C:\c_project\pdfTest\";
-            using (FileStream outFile = new FileStream(basePath + "result_bold.pdf", FileMode.Create))
+            using (FileStream outFile = new FileStream(basePath + "forms.pdf", FileMode.Create))
             {
-                // Path to font
-                string ARIALUNI_TFF = Path.Combine(basePath, "FbHadasaNewBook-Bold.otf");
-
-                //Create a base font object making sure to specify IDENTITY-H
-                BaseFont bf = BaseFont.CreateFont(ARIALUNI_TFF, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-                iTextSharp.text.Font f = new iTextSharp.text.Font(bf, 20, 5);
-                
-
                 // Pdf with form
-                PdfReader pdfReader = new PdfReader(basePath + "form.pdf");
+                PdfReader pdfReader = new PdfReader(basePath + "deposit_with_forms.pdf");
                 PdfStamper pdfStamper = new PdfStamper(pdfReader, outFile);
 
                 AcroFields fields = pdfStamper.AcroFields;
-                //fields.AddSubstitutionFont(f.BaseFont);
 
-
-                fields.SetField("date", "TEST");
-                fields.SetField("t.z", "בדיקה");
+                fields.SetField("hebDateTitle", "01/01/2023");
+                fields.SetField("fullAddress", "נאגרה 38");
+                fields.SetField("cityName", "ירושלים");
+                fields.SetField("streetNo", "38");
+                fields.SetField("entrance", "10");
+                fields.SetField("balance", "5000");
+                fields.SetField("totalAmount", "500");
 
 
                 pdfStamper.Close();
