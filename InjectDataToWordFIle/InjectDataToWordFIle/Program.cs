@@ -62,7 +62,7 @@ namespace InjectDataToWordFIle
 
 
                 fields.SetField("totalAmount", $"{5000:n}"); // סך התרומה
-                fields.SetField("creditCardNumber", "1234-1234-1234-1234");
+                fields.SetField("creditCardNumber", "1234");
 
                 pdfStamper.Close();
                 pdfReader.Close();
