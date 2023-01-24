@@ -28,7 +28,7 @@ namespace InjectDataToWordFIle
 
 
                 // First row
-                int basadPadding = 80;
+                int basadPadding = 67;
                 string date = "01/01/2023";
                 string besad = @"בס""ד";
                 string besad_date = besad.PadRight(basadPadding) + "תאריך " + date;
