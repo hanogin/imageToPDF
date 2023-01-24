@@ -67,28 +67,5 @@ namespace InjectDataToWordFIle
                 pdfReader.Close();
             }
         }
-
-        //private static void ConverrAspose()
-        //{
-        //    string basePath = @"C:\c_project\pdfTest\";
-        //    // Load PDF form contents
-        //    FileStream fs = new FileStream(basePath + "result_bold.pdf", FileMode.Open, FileAccess.ReadWrite);
-
-
-        //    // Instantiate Document instance with stream holding form file
-        //    Aspose.Pdf.Document pdfDocument = new Aspose.Pdf.Document(fs);
-        //    var f = pdfDocument.FontUtilities;
-            
-        //    // Get referecne of particuarl TextBoxField
-        //    TextBoxField txtFld = pdfDocument.Form["t.z"] as TextBoxField;
-            
-        //    // Fill form field with arabic text
-        //    txtFld.Value = "בדיקה";
-            
-        //    basePath = basePath + "ArabicTextFilling_out.pdf";
-        //    // Save updated document
-        //    pdfDocument.Save(basePath);
-        //}
-
     }
 }
